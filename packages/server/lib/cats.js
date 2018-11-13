@@ -2,6 +2,7 @@
 
 module.exports = [
   {
+    id: '1',
     name: 'mr. fluffs',
     age: 4,
     messages: [

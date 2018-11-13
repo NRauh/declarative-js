@@ -65,6 +65,7 @@ First let's create a fake data.
 
 module.export = [
   {
+    id: '1',
     name: 'mr. fluffs',
     age: 4,
     messages: [
@@ -94,6 +95,8 @@ As it sounds like, this will define our routing.
 // lib/routes.js
 ```
 
+Keep in mind that Hapi will give params back as strings.
+
 Next add `server.route(routes)` to `server.js`.
 
 Lastly add a start command to the `package.json` file.
@@ -103,13 +106,16 @@ I'm going to use nodemon for it.
 
 Now let's add a bit of error handling to our handler.
 
-If a request is out of index (i.e. requesting 30 when there's only 10 profiles), we want to return a 404 error.
+If the profile wasn't found, we want to return a 404 error.
 
 ```js
 // lib/profiles.js
-const { profileId } = handler.params;
-
-if (cats.length <= profileId) {
-  return h.response({ err: 'profile not found' }).code(404);
-}
+// code for if profile is empty
 ```
+
+Out of the box, Hapi returns JSON instead of text responses.
+Meaning if there's an error, Hapi will return any errors in JSON.
+
+It doesn't return the error itself, so you still need to do error handling.
+But defaults for 404, unexpected errors, etc will return in JSON.
+This can be nice if you're http client is expecting JSON by default (the HttpClient service in Angular for example).
