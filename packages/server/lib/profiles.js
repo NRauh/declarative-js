@@ -3,6 +3,12 @@ const cats = require('./cats');
 
 module.exports = {
   getProfile(request, h) {
-    return cats[request.params.profileId];
+    const { profileId } = request.params;
+
+    if (cats.length <= profileId) {
+      return h.response({ err: 'profile not found' }).code(404);
+    }
+
+    return cats[profileId];
   },
 };

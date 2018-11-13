@@ -98,3 +98,18 @@ Next add `server.route(routes)` to `server.js`.
 
 Lastly add a start command to the `package.json` file.
 I'm going to use nodemon for it.
+
+---
+
+Now let's add a bit of error handling to our handler.
+
+If a request is out of index (i.e. requesting 30 when there's only 10 profiles), we want to return a 404 error.
+
+```js
+// lib/profiles.js
+const { profileId } = handler.params;
+
+if (cats.length <= profileId) {
+  return h.response({ err: 'profile not found' }).code(404);
+}
+```
