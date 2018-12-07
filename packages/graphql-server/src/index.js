@@ -23,20 +23,11 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     cats: () => cats,
-    messages: () => {
-      const messagesWithCats = messages.map((message) => {
-        const messageCat = cats.find(cat => {
-          console.log('looking for cat:', cat.id);
-          return cat.id === message.cat_id
-        });
-
-        return {
-          ...message,
-          cat: messageCat
-        };
-      });
-
-      return messagesWithCats;
+    messages: () => messages,
+  },
+  Message: {
+    cat({ cat_id }) {
+      return cats.filter(singleCat => singleCat.id === cat_id)[0];
     },
   },
 };
