@@ -19,22 +19,22 @@ const cats = [
 const messages = [
   {
     message: 'meow',
-    cat_id: '1',
+    catId: '1',
     id: '1',
   },
   {
     message: 'feed me',
-    cat_id: '1',
+    catId: '1',
     id: '2',
   },
   {
     message: 'i brought you a bird',
-    cat_id: '3',
+    catId: '3',
     id: '3',
   },
   {
     message: 'rub my tummy',
-    cat_id: '2',
+    catId: '2',
     id: '4',
   },
 ];
